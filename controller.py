@@ -3,7 +3,7 @@ from converter import uni2win, uni2zg, win2uni, zg2uni
 
 def convert(from_encoding='from_zawgyi', to_encoding='to_unicode', input=''):
     result = ''
-    if from_encoding == to_encoding:
+    if from_encoding[5:] == to_encoding[3:]:
         return input
     if from_encoding == 'from_unicode':
         if to_encoding == 'to_zawgyi':
