@@ -1,5 +1,6 @@
 from flask import Flask, render_template, jsonify, request
 import controller
+import pyperclip
 
 app = Flask(__name__)
 
@@ -23,20 +24,20 @@ def convert():
 
 @app.route('/_copy')
 def copy():
-    txt = request.args.get('txt', 'Copy', type=str)
+    txt = request.args.get('to_text', '', type=str)
+    pyperclip.copy(txt)
     return jsonify(result=txt)
 
 
 @app.route('/_paste')
 def paste():
-    txt = request.args.get('txt', 'Paste', type=str)
+    txt = pyperclip.paste()
     return jsonify(result=txt)
 
 
 @app.route('/_clear')
 def clear():
-    txt = request.args.get('txt', '', type=str)
-    return jsonify(result=txt)
+    return jsonify(result='')
 
 
 if __name__ == "__main__":
