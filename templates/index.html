@@ -45,6 +45,40 @@
             display: none;
             font-size: 18px;
         }
+
+        textarea {
+            height: 270px;
+        }
+
+        @font-face {
+            font-family: Padauk;
+            font-size: 16px;
+            src: url(../static/assets/fonts/padauk.ttf);
+        }
+
+        .font-unicode {
+            font-family: "Padauk", Times, serif;
+        }
+
+        @font-face {
+            font-family: zawgyione;
+            font-size: 14px;
+            src: url(../static/assets/fonts/zawgyione.ttf);
+        }
+
+        .font-zawgyi {
+            font-family: "zawgyione", Times, serif;
+        }
+
+        @font-face {
+            font-family: WinInnwa;
+            font-size: 50px;
+            src: url(../static/assets/fonts/innwa.ttf);
+        }
+
+        .font-win {
+            font-family: "WinInnwa", Times, serif;
+        }
     </style>
 
 </head>
@@ -94,8 +128,8 @@
                     <div class="mdl-card__supporting-text">
                         <form action="#">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--full-width">
-                                    <textarea class="mdl-textfield__input" type="text" rows="13" id="from_text"
-                                              name="from_text"></textarea>
+                                    <textarea class="mdl-textfield__input font-zawgyi" type="text"
+                                              id="from_text" name="from_text"></textarea>
                                 <label class="mdl-textfield__label" for="from_text" id="from_text_hint">
                                     Select encoding and paste here
                                 </label>
@@ -140,7 +174,8 @@
                     <div class="mdl-card__supporting-text">
                         <form action="#">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--full-width">
-                                    <textarea class="mdl-textfield__input" type="text" rows="13" id="to_text"
+                                    <textarea class="mdl-textfield__input font-unicode" type="text"
+                                              id="to_text"
                                               name="to_text"></textarea>
                                 <label class="mdl-textfield__label" for="to_text" id="to_text_hint">
                                     Converted text will appear here
@@ -252,6 +287,24 @@
                 $("#to_text_hint").show();
             });
             return false;
+        });
+        $('input[type=radio][name=from]').change(function () {
+            if (this.value === 'from_zawgyi') {
+                $("#from_text").css("font-family", "Zawgyi-One");
+            } else if (this.value === 'from_unicode') {
+                $("#from_text").css("font-family", "Padauk");
+            } else if (this.value === 'from_win') {
+                $("#from_text").css("font-family", "WinInnwa");
+            }
+        });
+        $('input[type=radio][name=to]').change(function () {
+            if (this.value === 'to_zawgyi') {
+                $("#to_text").css("font-family", "Zawgyi-One");
+            } else if (this.value === 'to_unicode') {
+                $("#to_text").css("font-family", "Padauk");
+            } else if (this.value === 'to_win') {
+                $("#to_text").css("font-family", "WinInnwa");
+            }
         });
     });
 </script>
