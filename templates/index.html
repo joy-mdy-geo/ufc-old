@@ -140,7 +140,7 @@
                         <a href="#" class="mdl-button mdl-cell mdl-js-button mdl-js-ripple-effect btn-font-size"
                            id="clear" name="clear">Clear</a>
                         <a href="#" class="mdl-button mdl-cell mdl-js-button mdl-js-ripple-effect btn-font-size"
-                           id="paste" name="paste">Paste</a>
+                           id="paste" name="paste" data-clipboard-target="#from_text">Paste</a>
                         <a href="#" class="mdl-button mdl-cell mdl-js-button mdl-js-ripple-effect btn-font-size"
                            id="convert" name="convet">Convert</a>
                     </div>
@@ -185,7 +185,7 @@
                     </div>
                     <div class="mdl-card__actions mdl-card--border">
                         <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect btn-font-size"
-                           id="copy" name="copy">Copy</a>
+                           id="copy" name="copy" data-clipboard-target="#to_text">Copy</a>
                     </div>
                 </div>
             </div>
@@ -250,7 +250,7 @@
 <div class="copied"></div>
 <script type="text/javascript">
     $(function () {
-        $('a#convert').bind('click', function () {
+        $('#convert').bind('click', function () {
             $.getJSON($SCRIPT_ROOT + '/_convert', {
                 to_text: $('textarea[name="to_text"]').val(),
                 from_text: $('textarea[name="from_text"]').val(),
@@ -262,7 +262,8 @@
             });
             return false;
         });
-        $('a#copy').bind('click', function () {
+
+        $('#copy').bind('click', function () {
             $.getJSON($SCRIPT_ROOT + '/_copy', {
                 to_text: $('textarea[name="to_text"]').val()
             }, function (data) {
@@ -270,7 +271,7 @@
             });
             return false;
         });
-        $('a#paste').bind('click', function () {
+        $('#paste').bind('click', function () {
             $.getJSON($SCRIPT_ROOT + '/_paste', {
                 from_text: $('textarea[name="from_text"]').val()
             }, function (data) {
@@ -279,13 +280,11 @@
             });
             return false;
         });
-        $('a#clear').bind('click', function () {
-            $.getJSON($SCRIPT_ROOT + '/_clear', {}, function (data) {
-                $("#from_text").text('');
-                $("#to_text").text('');
-                $("#from_text_hint").show();
-                $("#to_text_hint").show();
-            });
+        $('#clear').bind('click', function () {
+            $("#from_text").text('');
+            $("#to_text").text('');
+            $("#from_text_hint").show();
+            $("#to_text_hint").show();
             return false;
         });
         $('input[type=radio][name=from]').change(function () {

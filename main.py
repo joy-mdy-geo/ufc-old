@@ -35,9 +35,9 @@ def paste():
     return jsonify(result=txt)
 
 
-@app.route('/_clear')
-def clear():
-    return jsonify(result='')
+# @app.route('/_clear')
+# def clear():
+#     return jsonify(result='')
 
 
 if __name__ == "__main__":
