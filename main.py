@@ -11,13 +11,11 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/_convert')
+@app.route('/_convert', methods=["POST"])
 def convert():
-    from_text = request.args.get('from_text', '', type=str)
-    to_text = request.args.get('to_text', '', type=str)
-    from_encoding = request.args.get('from_encoding', '', type=str)
-    to_encoding = request.args.get('to_encoding', '', type=str)
-    # res = from_encoding + '\n' + to_encoding + '\n' + from_text
+    from_text = request.form['from_text']
+    from_encoding = request.form['from_encoding']
+    to_encoding = request.form['to_encoding']
     res = controller.convert(from_encoding, to_encoding, from_text)
     return jsonify(result=res)
 
@@ -29,16 +27,5 @@ def copy():
     return jsonify(result=txt)
 
 
-@app.route('/_paste')
-def paste():
-    txt = pyperclip.paste()
-    return jsonify(result=txt)
-
-
-# @app.route('/_clear')
-# def clear():
-#     return jsonify(result='')
-
-
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)

@@ -10,76 +10,14 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/material.css') }}">
     <script src="{{ url_for('static', filename='assets/js/material.js') }}"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='assets/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/app.css') }}">
     <script src="{{ url_for('static', filename='assets/js/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/app.js') }}"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <script type="text/javascript">
         $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
     </script>
-
-    <style>
-        .my-card > .mdl-card__title {
-            background: #46B6A4;
-        }
-
-        .mdl-mega-footer {
-            padding: 16px 40px;
-            color: white;
-            background-color: rgb(0, 150, 136);
-        }
-
-        .btn-font-size {
-            font-size: 16px;
-        }
-
-        .copied {
-            position: absolute;
-            background: #009688;
-            color: #fff;
-            font-weight: bold;
-            z-index: 99;
-            width: 100%;
-            top: 50%;
-            text-align: center;
-            padding: 15px;
-            display: none;
-            font-size: 18px;
-        }
-
-        textarea {
-            height: 270px;
-        }
-
-        @font-face {
-            font-family: Padauk;
-            font-size: 16px;
-            src: url(../static/assets/fonts/padauk.ttf);
-        }
-
-        .font-unicode {
-            font-family: "Padauk", Times, serif;
-        }
-
-        @font-face {
-            font-family: zawgyione;
-            font-size: 14px;
-            src: url(../static/assets/fonts/zawgyione.ttf);
-        }
-
-        .font-zawgyi {
-            font-family: "zawgyione", Times, serif;
-        }
-
-        @font-face {
-            font-family: WinInnwa;
-            font-size: 50px;
-            src: url(../static/assets/fonts/innwa.ttf);
-        }
-
-        .font-win {
-            font-family: "WinInnwa", Times, serif;
-        }
-    </style>
 
 </head>
 <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
@@ -142,7 +80,7 @@
                         <a href="#" class="mdl-button mdl-cell mdl-js-button mdl-js-ripple-effect btn-font-size"
                            id="paste" name="paste" data-clipboard-target="#from_text">Paste</a>
                         <a href="#" class="mdl-button mdl-cell mdl-js-button mdl-js-ripple-effect btn-font-size"
-                           id="convert" name="convet">Convert</a>
+                           id="convert" name="convert">Convert</a>
                     </div>
                 </div>
                 <div class="my-card mdl-card mdl-cell mdl-cell--6-col-desktop mdl-cell--12-col-tablet mdl-cell--12-col-phone mdl-shadow--2dp">
@@ -248,63 +186,4 @@
 </div>
 </body>
 <div class="copied"></div>
-<script type="text/javascript">
-    $(function () {
-        $('#convert').bind('click', function () {
-            $.getJSON($SCRIPT_ROOT + '/_convert', {
-                to_text: $('textarea[name="to_text"]').val(),
-                from_text: $('textarea[name="from_text"]').val(),
-                to_encoding: $('input[name="to"]:checked').val(),
-                from_encoding: $("input[name='from']:checked").val()
-            }, function (data) {
-                $("#to_text").text(data.result);
-                $("#to_text_hint").hide();
-            });
-            return false;
-        });
-
-        $('#copy').bind('click', function () {
-            $.getJSON($SCRIPT_ROOT + '/_copy', {
-                to_text: $('textarea[name="to_text"]').val()
-            }, function (data) {
-                $(".copied").text("Copied to clipboard").show().fadeOut(1500);
-            });
-            return false;
-        });
-        $('#paste').bind('click', function () {
-            $.getJSON($SCRIPT_ROOT + '/_paste', {
-                from_text: $('textarea[name="from_text"]').val()
-            }, function (data) {
-                $("#from_text").text(data.result);
-                $("#from_text_hint").hide();
-            });
-            return false;
-        });
-        $('#clear').bind('click', function () {
-            $("#from_text").text('');
-            $("#to_text").text('');
-            $("#from_text_hint").show();
-            $("#to_text_hint").show();
-            return false;
-        });
-        $('input[type=radio][name=from]').change(function () {
-            if (this.value === 'from_zawgyi') {
-                $("#from_text").css("font-family", "Zawgyi-One");
-            } else if (this.value === 'from_unicode') {
-                $("#from_text").css("font-family", "Padauk");
-            } else if (this.value === 'from_win') {
-                $("#from_text").css("font-family", "WinInnwa");
-            }
-        });
-        $('input[type=radio][name=to]').change(function () {
-            if (this.value === 'to_zawgyi') {
-                $("#to_text").css("font-family", "Zawgyi-One");
-            } else if (this.value === 'to_unicode') {
-                $("#to_text").css("font-family", "Padauk");
-            } else if (this.value === 'to_win') {
-                $("#to_text").css("font-family", "WinInnwa");
-            }
-        });
-    });
-</script>
 </html>
