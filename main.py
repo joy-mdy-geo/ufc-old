@@ -20,9 +20,9 @@ def convert():
     return jsonify(result=res)
 
 
-@app.route('/_copy')
+@app.route('/_copy', methods=["POST"])
 def copy():
-    txt = request.args.get('to_text', '', type=str)
+    txt = request.form['to_text']
     pyperclip.copy(txt)
     return jsonify(result=txt)
 

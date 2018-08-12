@@ -9,8 +9,8 @@
 
     <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/material.css') }}">
     <script src="{{ url_for('static', filename='assets/js/material.js') }}"></script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='assets/styles.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='assets/app.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/app.css') }}">
     <script src="{{ url_for('static', filename='assets/js/jquery.js') }}"></script>
     <script src="{{ url_for('static', filename='assets/js/app.js') }}"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -66,7 +66,7 @@
                     <div class="mdl-card__supporting-text">
                         <form action="#">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--full-width">
-                                    <textarea class="mdl-textfield__input font-zawgyi" type="text"
+                                <textarea class="mdl-textfield__input font-zawgyi" type="text"
                                               id="from_text" name="from_text"></textarea>
                                 <label class="mdl-textfield__label" for="from_text" id="from_text_hint">
                                     Select encoding and paste here
@@ -77,8 +77,6 @@
                     <div class="mdl-grid mdl-grid--no-spacing mdl-card__actions mdl-card--border">
                         <a href="#" class="mdl-button mdl-cell mdl-js-button mdl-js-ripple-effect btn-font-size"
                            id="clear" name="clear">Clear</a>
-                        <a href="#" class="mdl-button mdl-cell mdl-js-button mdl-js-ripple-effect btn-font-size"
-                           id="paste" name="paste" data-clipboard-target="#from_text">Paste</a>
                         <a href="#" class="mdl-button mdl-cell mdl-js-button mdl-js-ripple-effect btn-font-size"
                            id="convert" name="convert">Convert</a>
                     </div>
@@ -123,7 +121,7 @@
                     </div>
                     <div class="mdl-card__actions mdl-card--border">
                         <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect btn-font-size"
-                           id="copy" name="copy" data-clipboard-target="#to_text">Copy</a>
+                           id="copy" name="copy">Copy</a>
                     </div>
                 </div>
             </div>

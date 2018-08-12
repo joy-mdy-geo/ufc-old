@@ -33,7 +33,7 @@ textarea {
 @font-face {
     font-family: Padauk;
     font-size: 16px;
-    src: url(fonts/padauk.ttf);
+    src: url(../fonts/padauk.ttf);
 }
 
 .font-unicode {
@@ -43,7 +43,7 @@ textarea {
 @font-face {
     font-family: zawgyione;
     font-size: 14px;
-    src: url(fonts/zawgyione.ttf);
+    src: url(../fonts/zawgyione.ttf);
 }
 
 .font-zawgyi {
@@ -53,7 +53,7 @@ textarea {
 @font-face {
     font-family: WinInnwa;
     font-size: 50px;
-    src: url(fonts/innwa.ttf);
+    src: url(../fonts/innwa.TTF);
 }
 
 .font-win {
